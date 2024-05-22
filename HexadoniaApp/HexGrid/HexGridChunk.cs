@@ -13,7 +13,7 @@ public class HexGridChunk : Node3D
 
     private ChunkBuilder _chunkBuilder;
 
-    public HexGridChunk(Material hexMaterial, int xChunk, int zChunk, IReadOnlyList<HexCell> cells, ChunkBuilder chunkBuilder)
+    public HexGridChunk(Material hexMaterial, int xChunk, int zChunk, IReadOnlyList<HexCell> cells, ChunkBuilder chunkBuilder) : this()
     { 
         _chunkBuilder = chunkBuilder;
         Name = "HexGridChunk";
@@ -55,7 +55,7 @@ public class HexGridChunk : Node3D
 
     public override void _Process(double delta)
     {
-        // if (!_refreshEnabled || !Visible) return;
+        if (!_refreshEnabled || !Visible) return;
         
         if (_hexMesh == null)
         {
@@ -70,6 +70,7 @@ public class HexGridChunk : Node3D
     
     public void Refresh()
     {
+        Console.WriteLine("HexGridChunk.Refresh()");
         _refreshEnabled = true;
     }
 
