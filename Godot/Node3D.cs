@@ -4,7 +4,7 @@ namespace Godot;
 
 public class Node3D : Node
 {
-    public Transform3D Transform3D;
+    public Transform3D Transform3D = Transform3D.Identity;
     public bool Visible { get; set; } = true;
 
     public Vector3 ToLocal(Vector3 worldPosition)
@@ -12,5 +12,27 @@ public class Node3D : Node
         return Vector3.Zero;
     }
 
-    public Transform3D GlobalTransform => Transform3D;
+    public Vector3 ToGlobal(Vector3 localPosition)
+    {
+        if (Parent is Node3D parentNode3D)
+        {
+            return parentNode3D.ToGlobal(localPosition) + Transform3D.Position;
+        }
+
+        return Transform3D.Position + localPosition;
+    }
+
+    public Vector3 GlobalPosition => ToGlobal(Vector3.Zero);
+
+    public Transform3D GlobalTransform
+    {
+        get
+        {
+            if (Parent is Node3D node)
+            {
+                return Transform3D * node.GlobalTransform;
+            }
+            return Transform3D;
+        }
+    }
 }

@@ -2,5 +2,5 @@
 
 public interface IRenderable
 {
-    public void Render();
+    public void Render(Transform3D worldPosition);
 }

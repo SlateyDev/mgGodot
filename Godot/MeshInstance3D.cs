@@ -75,11 +75,12 @@ public class MeshInstance3D : Node3D, IRenderable
         }
     }
 
-    public void Render()
+    public void Render(Transform3D worldPosition)
     {
         ((BasicEffect)Effect).Projection = Engine.CurrentCamera.ProjectionMatrix;
         ((BasicEffect)Effect).View = Engine.CurrentCamera.ViewMatrix;
-        ((BasicEffect)Effect).World = Engine.WorldMatrix;
+        // ((BasicEffect)Effect).World = Engine.WorldMatrix;
+        ((BasicEffect)Effect).World = worldPosition.Matrix;
 
         if (Mesh == null) return;
 

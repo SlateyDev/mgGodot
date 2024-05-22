@@ -13,19 +13,23 @@ public class SceneTree
 
     public void RunRender()
     {
-        RunSubRender(Root);
+        RunSubRender(Root, new Transform3D());
     }
 
-    private void RunSubRender(Node renderNode)
+    private void RunSubRender(Node renderNode, Transform3D currentTransform)
     {
         if (renderNode is IRenderable renderable)
         {
-            renderable.Render();
+            renderable.Render(currentTransform);
         }
 
         foreach (var node in renderNode._children)
         {
-            RunSubRender(node);
+            if (node is Node3D node3D)
+            {
+                currentTransform *= node3D.Transform3D;
+            }
+            RunSubRender(node, currentTransform);
         }
     }
 }

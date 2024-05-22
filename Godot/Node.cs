@@ -7,17 +7,17 @@ namespace Godot;
 public class Node
 {
     public string Name { get; set; }
-    private Node _parent = null;
+    protected Node Parent = null;
     private TimeSpan? _lastGameTime;
     internal readonly List<Node> _children = new();
 
     public void AddChild(Node child)
     {
-        if (child._parent != null)
+        if (child.Parent != null)
         {
             throw new Exception("Child already has a parent");
         }
-        child._parent = this;
+        child.Parent = this;
         _children.Add(child);
     }
 
