@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexadoniaApp", "HexadoniaApp\HexadoniaApp.csproj", "{14C7906B-6886-4484-AE21-499E8E97B6DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Godot", "Godot\Godot.csproj", "{8DE1DE20-DEF8-4FFF-9A60-007B56BFD350}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14C7906B-6886-4484-AE21-499E8E97B6DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14C7906B-6886-4484-AE21-499E8E97B6DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14C7906B-6886-4484-AE21-499E8E97B6DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14C7906B-6886-4484-AE21-499E8E97B6DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DE1DE20-DEF8-4FFF-9A60-007B56BFD350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DE1DE20-DEF8-4FFF-9A60-007B56BFD350}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DE1DE20-DEF8-4FFF-9A60-007B56BFD350}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DE1DE20-DEF8-4FFF-9A60-007B56BFD350}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
