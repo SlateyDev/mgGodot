@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace HexadoniaApp;
 
-public class HexGame : Game
+public class HexGame : Godot.Game.App
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
