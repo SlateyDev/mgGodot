@@ -10,6 +10,8 @@ public class HexGame : Godot.Game.App
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+    private Model _campfire;
+    private Matrix[] _campfireTransforms;
 
     private readonly Camera3D _camera3D = new();
 
@@ -74,11 +76,17 @@ public class HexGame : Godot.Game.App
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+        _campfire = Content.Load<Model>("Campfire");
+        _campfireTransforms = new Matrix[_campfire.Bones.Count];
+        _campfire.CopyAbsoluteBoneTransformsTo(_campfireTransforms);
     }
 
     protected override void UnloadContent()
     {
         _grid.Shutdown();
+
+        _campfire = null;
     }
 
     protected override void Update(GameTime gameTime)
@@ -144,6 +152,25 @@ public class HexGame : Godot.Game.App
         GraphicsDevice.RasterizerState = rasterizerState;
 
         _sceneTree.RunRender();
+        
+        foreach (var mesh in _campfire.Meshes)
+        {
+            var localWorld = _campfireTransforms[mesh.ParentBone.Index] * Matrix.CreateScale(0.1f, 0.1f, 0.1f);
+
+            foreach (var part in mesh.MeshParts)
+            {
+                var e = (BasicEffect)part.Effect;
+
+                e.World = localWorld;
+                e.View = Engine.CurrentCamera.ViewMatrix;
+                e.Projection = Engine.CurrentCamera.ProjectionMatrix;
+
+                e.EnableDefaultLighting();
+            }
+
+            mesh.Draw();
+        }
+
         
         base.Draw(gameTime);
     }
