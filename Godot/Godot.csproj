@@ -3,8 +3,10 @@
         <TargetFramework>net8.0</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="BepuPhysics" Version="2.5.0-beta.23" />
         <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303">
             <PrivateAssets>All</PrivateAssets>
         </PackageReference>
+        <PackageReference Include="VelcroPhysics.MonoGame" Version="0.2.2-CI-20210406-134555" />
     </ItemGroup>
 </Project>
