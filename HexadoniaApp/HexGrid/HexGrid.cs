@@ -12,7 +12,7 @@ namespace HexadoniaApp.HexGrid;
 public class HexGrid : Node3D
 {
      private Material _material;
-     private Texture2D _cellOutlineTexture;
+     // private Texture2D _cellOutlineTexture;
 
 //     private NodePath _positionObjectNode;
      private Node3D _positionObject;
@@ -207,7 +207,7 @@ public class HexGrid : Node3D
          cell.Enabled = true;
          cell.Position = position;
          cell.Coordinates = HexCoordinates.FromOffsetCoordinates(x, z);
-         cell.CellOutlineTexture = _cellOutlineTexture;
+         // cell.CellOutlineTexture = _cellOutlineTexture;
 
          if (x > 0)
          {
