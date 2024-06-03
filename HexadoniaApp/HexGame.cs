@@ -12,6 +12,7 @@ public class HexGame : Godot.Game.App
     private SpriteBatch _spriteBatch;
     private Model _campfire;
     private Matrix[] _campfireTransforms;
+    private Texture2D _campfireTexture;
 
     private readonly Camera3D _camera3D = new();
 
@@ -80,13 +81,14 @@ public class HexGame : Godot.Game.App
         _campfire = Content.Load<Model>("Campfire");
         _campfireTransforms = new Matrix[_campfire.Bones.Count];
         _campfire.CopyAbsoluteBoneTransformsTo(_campfireTransforms);
+        _campfireTexture = Content.Load<Texture2D>("Campfire_MAT_BaseColor_01");
     }
 
     protected override void UnloadContent()
     {
         _grid.Shutdown();
 
-        _campfire = null;
+        Content.Unload();
     }
 
     protected override void Update(GameTime gameTime)
@@ -160,6 +162,8 @@ public class HexGame : Godot.Game.App
             foreach (var part in mesh.MeshParts)
             {
                 var e = (BasicEffect)part.Effect;
+                e.Texture = _campfireTexture;
+                e.TextureEnabled = true;
 
                 e.World = localWorld;
                 e.View = Engine.CurrentCamera.ViewMatrix;
@@ -167,10 +171,13 @@ public class HexGame : Godot.Game.App
 
                 e.EnableDefaultLighting();
             }
-
+            
             mesh.Draw();
         }
 
+        _spriteBatch.Begin(transformMatrix: Matrix.CreateTranslation(-10, -10, 0));
+        _spriteBatch.Draw(_campfireTexture, new Rectangle(10,10,266,266), new Rectangle(0, 0, 256, 256), Color.White);
+        _spriteBatch.End();
         
         base.Draw(gameTime);
     }
