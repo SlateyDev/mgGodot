@@ -148,10 +148,10 @@ public class HexGame : Godot.Game.App
         Engine.WorldMatrix = _worldMatrix;
         
         GraphicsDevice.Clear(Color.Bisque);
-        
-        var rasterizerState = new RasterizerState();
-        rasterizerState.CullMode = CullMode.None;
-        GraphicsDevice.RasterizerState = rasterizerState;
+
+        //var rasterizerState = new RasterizerState();
+        //rasterizerState.CullMode = CullMode.None;
+        //GraphicsDevice.RasterizerState = rasterizerState;
 
         _sceneTree.RunRender();
         
@@ -175,10 +175,10 @@ public class HexGame : Godot.Game.App
             mesh.Draw();
         }
 
-        _spriteBatch.Begin(transformMatrix: Matrix.CreateTranslation(-10, -10, 0));
-        _spriteBatch.Draw(_campfireTexture, new Rectangle(10,10,266,266), new Rectangle(0, 0, 256, 256), Color.White);
+        _spriteBatch.Begin(transformMatrix: Matrix.CreateTranslation(0, 0, 0));
+        _spriteBatch.Draw(_campfireTexture, new Rectangle(0, 0, 256, 256), new Rectangle(0, 0, 256, 256), Color.White);
         _spriteBatch.End();
-        
+
         base.Draw(gameTime);
     }
 

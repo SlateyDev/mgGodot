@@ -4,8 +4,13 @@ namespace Godot;
 
 public class SceneTree
 {
-    public Node Root { get; } = new();
+    public Node Root { get; } = new () { Name = "root" };
     
+    public SceneTree()
+    {
+        Root.Tree = this;
+    }
+
     public void RunProcess(GameTime gameTime)
     {
         Root.Update(gameTime);
