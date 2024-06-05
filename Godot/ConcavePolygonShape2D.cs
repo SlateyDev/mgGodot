@@ -1,6 +1,6 @@
 namespace Godot;
 
-public class ConcavePolygonShape2D : Shape2D
-{
-    
-}
+// public class ConcavePolygonShape2D : Shape2D
+// {
+//     
+// }

@@ -14,6 +14,7 @@ public class Node
             _tree = value;
             if (value != null)
             {
+                EnterTreeInternal();
                 _EnterTree();
             }
             foreach(var node in _children)
@@ -22,10 +23,12 @@ public class Node
             }
             if (value != null)
             {
+                ReadyInternal();
                 _Ready();
             }
             else
             {
+                ExitTreeInternal();
                 _ExitTree();
             }
         }
@@ -46,11 +49,16 @@ public class Node
         child.Tree = _tree;
     }
 
+    internal virtual void EnterTreeInternal() { }
     public virtual void _EnterTree() { }
+    internal virtual void ExitTreeInternal() { }
     public virtual void _ExitTree() { }
 
+    internal virtual void ReadyInternal() { }
     public virtual void _Ready() { }
+    internal virtual void ProcessInternal(double delta) { }
     public virtual void _Process(double delta) { }
+    internal virtual void PhysicsProcessInternal(double delta) { }
     public virtual void _PhysicsProcess(double delta) { }
 
     internal void Update(GameTime gameTime)
@@ -61,6 +69,7 @@ public class Node
             delta = (gameTime.TotalGameTime - (TimeSpan)_lastGameTime).TotalSeconds;
         }
         _lastGameTime = gameTime.TotalGameTime;
+        ProcessInternal(delta);
         _Process(delta);
         foreach (var node in _children)
         {

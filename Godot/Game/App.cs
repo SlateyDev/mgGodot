@@ -1,10 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using VelcroPhysics.Dynamics;
 
 namespace Godot.Game;
 
 public class App : Microsoft.Xna.Framework.Game
 {
+    private readonly World _world;
+
+    public App()
+    {
+        _world = new World(new Vector2(0, 9.82f));
+    }
+    
     protected override void Initialize()
     {
         base.Initialize();
@@ -22,6 +30,7 @@ public class App : Microsoft.Xna.Framework.Game
 
     protected override void Update(GameTime gameTime)
     {
+        _world.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
         base.Update(gameTime);
     }
 
