@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Godot;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using VelcroPhysics.Utilities;
 
 namespace HexadoniaApp;
 
@@ -22,6 +24,9 @@ public class HexGame : Godot.Game.App
     private HexGrid.HexGrid _grid = new();
 
     private SceneTree _sceneTree = new();
+
+    private RigidBody2D _myObj;
+    private StaticBody2D _floor;
 
     private bool _orbit = false;
     
@@ -72,6 +77,18 @@ public class HexGame : Godot.Game.App
         
         _sceneTree.Root.AddChild(_testMeshInstance3D);
         _sceneTree.Root.AddChild(_grid);
+
+        ConvertUnits.SetDisplayUnitToSimUnitRatio(16f);
+        
+        _myObj = new RigidBody2D();
+        _myObj.AddChild(new CollisionShape2D { Shape = new RectangleShape2D { Size = new Vector2(10f, 1f) } });
+        _myObj.Transform.Position = new Vector2(10, 0);
+        _floor = new StaticBody2D();
+        _floor.AddChild(new CollisionShape2D { Shape = new RectangleShape2D { Size = new Vector2(100f, 1f) } });
+        _floor.Transform.Position = new Vector2(0, 250);
+        
+        _sceneTree.Root.AddChild(_myObj);
+        _sceneTree.Root.AddChild(_floor);
     }
 
     protected override void LoadContent()
@@ -140,6 +157,15 @@ public class HexGame : Godot.Game.App
         _sceneTree.RunProcess(gameTime);
 
         base.Update(gameTime);
+
+        foreach (var body in _myObj.Bodies)
+        {
+            Console.WriteLine($"_myObj: {body.Position}");
+        }
+        foreach (var body in _floor.Bodies)
+        {
+            Console.WriteLine($"_floor: {body.Position}");
+        }
     }
 
     protected override void Draw(GameTime gameTime)

@@ -4,7 +4,7 @@ namespace Godot;
 
 public struct Transform3D
 {
-    public static Transform3D Identity = new Transform3D(Vector3.Zero, Quaternion.Identity, Vector3.One);
+    public static Transform3D Identity => new Transform3D(Vector3.Zero, Quaternion.Identity, Vector3.One);
 
     public Transform3D()
     {

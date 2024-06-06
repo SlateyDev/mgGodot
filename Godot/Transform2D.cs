@@ -4,7 +4,7 @@ namespace Godot;
 
 public class Transform2D
 {
-    public static Transform2D Identity = new Transform2D(Vector2.Zero, 0.0f, Vector2.One);
+    public static Transform2D Identity => new(Vector2.Zero, 0.0f, Vector2.One);
 
     public Transform2D()
     {

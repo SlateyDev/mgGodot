@@ -5,5 +5,5 @@ namespace Godot;
 
 public abstract class CollisionObject2D : Node2D
 {
-    internal readonly List<Body> Bodies = [];
+    public readonly List<Body> Bodies = [];
 }
