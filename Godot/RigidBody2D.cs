@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Linq;
+using Godot.Game;
 using Microsoft.Xna.Framework;
 using VelcroPhysics.Dynamics;
 
@@ -12,7 +14,8 @@ public class RigidBody2D : PhysicsBody2D
         
         foreach (var collisionShape2D in _children.OfType<CollisionShape2D>())
         {
-        //     var body = collisionShape2D.Shape.CreateShape(world, 0, default(Vector2), 0, BodyType.Dynamic);
+             var body = collisionShape2D.Shape.CreateShape(App.World, 0, collisionShape2D.GlobalTransform.Position, collisionShape2D.GlobalTransform.Rotation, BodyType.Dynamic);
+             Bodies.Add(body);
         }
     }
 }

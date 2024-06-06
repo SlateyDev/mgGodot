@@ -46,7 +46,7 @@ public class HexGame : Godot.Game.App
 
         Engine.GraphicsDevice = GraphicsDevice;
 
-        _camera3D.Transform3D.Position = new Vector3(0, 10f, 20f);
+        _camera3D.Transform.Position = new Vector3(0, 10f, 20f);
 
         _testMesh = new Mesh
         {
@@ -102,25 +102,25 @@ public class HexGame : Godot.Game.App
 
         if (_leftKeys.Any(key => Keyboard.GetState().IsKeyDown(key)))
         {
-            _camera3D.Transform3D.Position -= Vector3.UnitX;
+            _camera3D.Transform.Position -= Vector3.UnitX;
             _camera3D.Target -= Vector3.UnitX;
         }
 
         if (_rightKeys.Any(key => Keyboard.GetState().IsKeyDown(key)))
         {
-            _camera3D.Transform3D.Position += Vector3.UnitX;
+            _camera3D.Transform.Position += Vector3.UnitX;
             _camera3D.Target += Vector3.UnitX;
         }
 
         if (_forwardKeys.Any(key => Keyboard.GetState().IsKeyDown(key)))
         {
-            _camera3D.Transform3D.Position -= Vector3.UnitZ;
+            _camera3D.Transform.Position -= Vector3.UnitZ;
             _camera3D.Target -= Vector3.UnitZ;
         }
 
         if (_backwardKeys.Any(key => Keyboard.GetState().IsKeyDown(key)))
         {
-            _camera3D.Transform3D.Position += Vector3.UnitZ;
+            _camera3D.Transform.Position += Vector3.UnitZ;
             _camera3D.Target += Vector3.UnitZ;
         }
 
@@ -132,7 +132,7 @@ public class HexGame : Godot.Game.App
         if (_orbit)
         {
             var rotationMatrix = Matrix.CreateRotationY(MathHelper.ToRadians(1f));
-            _camera3D.Transform3D.Position = Vector3.Transform(_camera3D.Transform3D.Position, rotationMatrix);
+            _camera3D.Transform.Position = Vector3.Transform(_camera3D.Transform.Position, rotationMatrix);
         }
 
         _camera3D.UpdateViewMatrix();

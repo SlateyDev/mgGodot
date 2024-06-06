@@ -69,7 +69,7 @@ public class Camera3D : Node3D
 
     public void UpdateViewMatrix()
     {
-        _viewMatrix = Matrix.CreateLookAt(Transform3D.Position, _target, Vector3.Up);
+        _viewMatrix = Matrix.CreateLookAt(Transform.Position, _target, Vector3.Up);
     }
 
     public Camera3D()

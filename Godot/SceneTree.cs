@@ -32,7 +32,7 @@ public class SceneTree
         {
             if (node is Node3D node3D)
             {
-                currentTransform *= node3D.Transform3D;
+                currentTransform *= node3D.Transform;
             }
             RunSubRender(node, currentTransform);
         }

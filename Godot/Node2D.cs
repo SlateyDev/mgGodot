@@ -2,7 +2,7 @@ namespace Godot;
 
 public class Node2D : Node
 {
-    public Transform2D Transform2D = Transform2D.Identity;
+    public Transform2D Transform = Transform2D.Identity;
 
     public bool Visible { get; set; } = true;
     
@@ -12,8 +12,8 @@ public class Node2D : Node
         {
             if (Parent is Node2D node)
             {
-                return Transform2D * node.GlobalTransform;
+                return Transform * node.GlobalTransform;
             }
-            return Transform2D;
+            return Transform;
         }
     }}

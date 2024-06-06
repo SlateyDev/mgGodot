@@ -6,11 +6,11 @@ namespace Godot.Game;
 
 public class App : Microsoft.Xna.Framework.Game
 {
-    private readonly World _world;
+    public static readonly World World;
 
-    public App()
+    static App()
     {
-        _world = new World(new Vector2(0, 9.82f));
+        World = new World(new Vector2(0, 9.82f));
     }
     
     protected override void Initialize()
@@ -30,7 +30,7 @@ public class App : Microsoft.Xna.Framework.Game
 
     protected override void Update(GameTime gameTime)
     {
-        _world.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
+        World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
         base.Update(gameTime);
     }
 
