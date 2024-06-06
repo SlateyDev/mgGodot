@@ -78,7 +78,7 @@ public class HexGame : Godot.Game.App
         _sceneTree.Root.AddChild(_testMeshInstance3D);
         _sceneTree.Root.AddChild(_grid);
 
-        ConvertUnits.SetDisplayUnitToSimUnitRatio(16f);
+        ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
         
         _myObj = new RigidBody2D();
         _myObj.AddChild(new CollisionShape2D { Shape = new RectangleShape2D { Size = new Vector2(10f, 1f) } });
@@ -201,9 +201,12 @@ public class HexGame : Godot.Game.App
             mesh.Draw();
         }
 
-        _spriteBatch.Begin(transformMatrix: Matrix.CreateTranslation(0, 0, 0));
-        _spriteBatch.Draw(_campfireTexture, new Rectangle(0, 0, 256, 256), new Rectangle(0, 0, 256, 256), Color.White);
-        _spriteBatch.End();
+        foreach (var body in _myObj.Bodies)
+        {
+            _spriteBatch.Begin(transformMatrix: Matrix.CreateTranslation(new Vector3(ConvertUnits.ToDisplayUnits(body.Position), 0)));
+            _spriteBatch.Draw(_campfireTexture, new Rectangle(0, 0, 256, 256), new Rectangle(0, 0, 256, 256), Color.White);
+            _spriteBatch.End();
+        }
 
         base.Draw(gameTime);
     }
